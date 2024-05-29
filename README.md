@@ -1,4 +1,4 @@
-# Django Shop Project
+#  SunShop☀️ Project
 
 This is a simple e-commerce web application built with Django. The project allows users to view products, search for products, view product details, and complete a checkout process.
 
