@@ -57,28 +57,23 @@ Handles the checkout process and saves the order information.
     python3 -m venv env
     source env/bin/activate
     ```
-
-3. **Install the dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Run migrations:**
+    
+3. **Run migrations:**
     ```bash
     python manage.py migrate
     ```
 
-5. **Create a superuser (optional, for accessing the admin site):**
+4. **Create a superuser (optional, for accessing the admin site):**
     ```bash
     python manage.py createsuperuser
     ```
 
-6. **Run the development server:**
+5. **Run the development server:**
     ```bash
     python manage.py runserver
     ```
 
-7. **Open your browser and go to:**
+6. **Open your browser and go to:**
     ```
     http://127.0.0.1:8000/
     ```
