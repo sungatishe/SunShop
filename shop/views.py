@@ -31,8 +31,9 @@ def checkout(request):
         city = request.POST.get('city', "")
         state = request.POST.get('state', "")
         zip = request.POST.get('zip', "")
+        total = request.POST.get('total', "")
 
-        order = Order(items=items, name=name, email=email, address=address, city=city, state=state, zip=zip)
+        order = Order(items=items, name=name, email=email, address=address, city=city, state=state, zip=zip, total=total)
         order.save()
 
     return render(request, 'shop/checkout.html')
