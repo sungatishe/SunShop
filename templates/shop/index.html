@@ -29,7 +29,7 @@
         <a class="nav-link" href="#">Features</a>
       </li>
       <li class="nav-item">
-        <button id="cart" type="button" class="btn mypopover btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+        <button id="cart" data-html="true" type="button" class="btn mypopover btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
             sagittis lacus vel augue laoreet rutrum faucibus.">
               Cart(0)
         </button>
@@ -64,9 +64,7 @@
                 <div class="card">
                     <img src="{{ product.image }}" class="card-img-top">
                     <div class="card-body">
-                        <div class="card-title">
-                            {{ product.item_name }}
-                        </div>
+                        <div id="name{{ product.id }}" class="card-title">{{ product.item_name }}</div>
                         <div class="card-text">
                             {{ product.price }} ₸
                         </div>
@@ -121,11 +119,14 @@
         console.log(item_id);
 
         if(cart[item_id] != undefined) {
-            cart[item_id] = cart[item_id] + 1;
+            quantity = cart[item_id][0] + 1
+            cart[item_id][0] = quantity;
 
         }
         else {
-            cart[item_id] = 1;
+            quantity = 1;
+            name = document.getElementById("name"+item_id).innerHTML
+            cart[item_id] = [quantity, name];
         }
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -133,11 +134,30 @@
     });
 </script>
 <script>
-var $j = jQuery.noConflict();
-
-$j(document).ready(function() {
-	$j('[data-toggle="popover"]').popover();
-});
+$(document).ready(function() {
+       var popover = new
+         bootstrap.Popover(document.querySelector('.mypopover'), {
+            container: 'body'
+      })
+        document.getElementById("cart").setAttribute('data-content', '<h2>Soul</h2>');
+       displayCart(cart)
+       function displayCart(cart){
+           var cartString = "";
+           cartString += "<h5>Your cart:</h5>"
+           var cartIndex = 1;
+           for(var i in cart) {
+               cartIndex += cartIndex
+               cartString += document.getElementById("name"+i).innerHTML + "Qty:" + cart[i][0] + "</br>";
+               cartIndex += 1;
+           }
+           cartString += "<a href='/checkout'><button class='btn btn-warning' id='checkout'>Checkout</button></a>";
+           document.getElementById("cart").setAttribute('data-content', cartString);
+           var popover = new
+             bootstrap.Popover(document.querySelector('.mypopover'), {
+                container: 'body'
+          })
+       }
+ });
 </script>
 
 </html>
